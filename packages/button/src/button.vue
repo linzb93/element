@@ -17,6 +17,7 @@
       }
     ]"
   >
+    <!-- Loading图标的权重比其他图标要高。 -->
     <i class="el-icon-loading" v-if="loading"></i>
     <i :class="icon" v-if="icon && !loading"></i>
     <span v-if="$slots.default"><slot></slot></span>
@@ -58,6 +59,7 @@
     },
 
     computed: {
+      // buttonSize的代码等看完Form相关的再回来解决
       _elFormItemSize() {
         return (this.elFormItem || {}).elFormItemSize;
       },
