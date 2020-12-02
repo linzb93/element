@@ -1,4 +1,5 @@
 <template>
+  <!-- 直接使用类名引入 -->
   <i :class="'el-icon-' + name"></i>
 </template>
 
