@@ -104,6 +104,7 @@ export default {
       options.placement = this.currentPlacement;
       options.offset = this.offset;
       options.arrowOffset = this.arrowOffset;
+      // 实例化的时候就计算位置了
       this.popperJS = new PopperJS(reference, popper, options);
       this.popperJS.onCreate(_ => {
         this.$emit('created', this);

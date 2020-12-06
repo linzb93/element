@@ -9,6 +9,7 @@
       v-if="multiple"
       ref="tags"
       :style="{ 'max-width': inputWidth - 32 + 'px', width: '100%' }">
+      <!-- 多选情况下，只显示第一个结果，其他的用数字表示 -->
       <span v-if="collapseTags && selected.length">
         <el-tag
           :closable="!selectDisabled"
@@ -488,7 +489,7 @@
           this.checkDefaultFirstOption();
         }
       },
-
+      // 滚动条滚动到待选中项的显示位置
       scrollToOption(option) {
         const target = Array.isArray(option) && option[0] ? option[0].$el : option.$el;
         if (this.$refs.popper && target) {
@@ -604,7 +605,7 @@
       handleClose() {
         this.visible = false;
       },
-
+      // 切换最后一个选中项的HitState。当有传参时，值为参数值，否则是原值的取反值。
       toggleLastOptionHitState(hit) {
         if (!Array.isArray(this.selected)) return;
         const option = this.selected[this.selected.length - 1];
@@ -633,8 +634,9 @@
           this.currentPlaceholder = this.$refs.input.value ? '' : this.cachedPlaceHolder;
         }
       },
-
+      // 重置输入状态
       resetInputState(e) {
+        // 不是backSpace（删除）按钮
         if (e.keyCode !== 8) this.toggleLastOptionHitState(false);
         this.inputLength = this.$refs.input.value.length * 15 + 20;
         this.resetInputHeight();
@@ -673,7 +675,7 @@
           }
         }, 300);
       },
-
+      // 选中时的回调
       handleOptionSelect(option, byClick) {
         if (this.multiple) {
           const value = (this.value || []).slice();
@@ -827,7 +829,7 @@
           }
         }
       },
-
+      // 只要item.value不是Object，就返回item.value
       getValueKey(item) {
         if (Object.prototype.toString.call(item.value).toLowerCase() !== '[object object]') {
           return item.value;

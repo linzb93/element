@@ -19,11 +19,11 @@ function createDocumentHandler(el, binding, vnode) {
       !vnode.context ||
       !mouseup.target ||
       !mousedown.target ||
-      el.contains(mouseup.target) ||
+      el.contains(mouseup.target) || // 这两个表示点击在元素以内
       el.contains(mousedown.target) ||
-      el === mouseup.target ||
+      el === mouseup.target || // 点击的是元素本身
       (vnode.context.popperElm &&
-      (vnode.context.popperElm.contains(mouseup.target) ||
+      (vnode.context.popperElm.contains(mouseup.target) || // popperElm是在下拉组件里面声明的
       vnode.context.popperElm.contains(mousedown.target)))) return;
 
     if (binding.expression &&
@@ -50,7 +50,7 @@ export default {
     const id = seed++;
     el[ctx] = {
       id,
-      documentHandler: createDocumentHandler(el, binding, vnode),
+      documentHandler: createDocumentHandler(el, binding, vnode), // 等到触发点击事件后执行该函数
       methodName: binding.expression,
       bindingFn: binding.value
     };

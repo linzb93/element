@@ -39,6 +39,7 @@ export default {
   },
 
   methods: {
+    // 点击滚动条触发
     clickThumbHandler(e) {
       // prevent click event of right button
       if (e.ctrlKey || e.button === 2) {
@@ -47,7 +48,7 @@ export default {
       this.startDrag(e);
       this[this.bar.axis] = (e.currentTarget[this.bar.offset] - (e[this.bar.client] - e.currentTarget.getBoundingClientRect()[this.bar.direction]));
     },
-
+    // 点击滚动条外层轨道触发
     clickTrackHandler(e) {
       const offset = Math.abs(e.target.getBoundingClientRect()[this.bar.direction] - e[this.bar.client]);
       const thumbHalf = (this.$refs.thumb[this.bar.offset] / 2);
@@ -55,7 +56,7 @@ export default {
 
       this.wrap[this.bar.scroll] = (thumbPositionPercentage * this.wrap[this.bar.scrollSize] / 100);
     },
-
+    // 拖拽 
     startDrag(e) {
       e.stopImmediatePropagation();
       this.cursorDown = true;

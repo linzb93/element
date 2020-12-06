@@ -25,7 +25,7 @@ export function toObject(arr) {
   }
   return res;
 };
-
+// 可以在deep Object里面按路径找到对应的key值
 export const getValueByPath = function(object, prop) {
   prop = prop || '';
   const paths = prop.split('.');

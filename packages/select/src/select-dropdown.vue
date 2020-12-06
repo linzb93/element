@@ -66,6 +66,7 @@
       this.referenceElm = this.$parent.$refs.reference.$el;
       this.$parent.popperElm = this.popperElm = this.$el;
       this.$on('updatePopper', () => {
+        // 创建popper，计算位置
         if (this.$parent.visible) this.updatePopper();
       });
       this.$on('destroyPopper', this.destroyPopper);

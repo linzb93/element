@@ -44,6 +44,7 @@ export default {
     let style = this.wrapStyle;
 
     if (gutter) {
+      // gutterWith可能是拼错了，正确的是gutterWidth
       const gutterWith = `-${gutter}px`;
       const gutterStyle = `margin-bottom: ${gutterWith}; margin-right: ${gutterWith};`;
 

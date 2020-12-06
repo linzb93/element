@@ -1,7 +1,7 @@
 import Vue from 'vue';
 
 let scrollBarWidth;
-
+// 我没法理解的是，一个看起来是计算滚动条宽度的函数，怎么还有创建滚动条这个操作？
 export default function() {
   if (Vue.prototype.$isServer) return 0;
   if (scrollBarWidth !== undefined) return scrollBarWidth;

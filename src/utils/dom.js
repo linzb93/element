@@ -27,6 +27,7 @@ export const on = (function() {
       }
     };
   } else {
+    // 兼容IE浏览器
     return function(element, event, handler) {
       if (element && event && handler) {
         element.attachEvent('on' + event, handler);
