@@ -59,7 +59,7 @@
     },
 
     computed: {
-      // buttonSize的代码等看完Form相关的再回来解决
+      // FormItem组件可以设置里面的表单尺寸，按钮也是
       _elFormItemSize() {
         return (this.elFormItem || {}).elFormItemSize;
       },

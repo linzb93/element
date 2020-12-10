@@ -69,8 +69,8 @@
       },
       rules: [Object, Array],
       error: String,
-      validateStatus: String,
-      for: String,
+      validateStatus: String, // 文档里面没有提到
+      for: String, // 文档里面没有提到
       inlineMessage: {
         type: [String, Boolean],
         default: ''
@@ -131,7 +131,7 @@
         let parent = this.$parent;
         let parentName = parent.$options.componentName;
         while (parentName !== 'ElForm') {
-          if (parentName === 'ElFormItem') {
+          if (parentName === 'ElFormItem') { // ElFormItem嵌套
             this.isNested = true;
           }
           parent = parent.$parent;
@@ -172,6 +172,7 @@
         return this.size || this._formSize;
       },
       sizeClass() {
+        // this.$ELEMENT是Element全局配置
         return this.elFormItemSize || (this.$ELEMENT || {}).size;
       }
     },
@@ -186,6 +187,7 @@
       };
     },
     methods: {
+      // Form的validate方法就是里面所有的FormItem调用各自的validate方法。
       validate(trigger, callback = noop) {
         this.validateDisabled = false;
         const rules = this.getFilteredRule(trigger);
@@ -237,6 +239,7 @@
 
         this.validateDisabled = true;
         if (Array.isArray(value)) {
+          // initialValue在FormItem初始化的时候就保存了
           prop.o[prop.k] = [].concat(this.initialValue);
         } else {
           prop.o[prop.k] = this.initialValue;
@@ -249,6 +252,7 @@
 
         this.broadcast('ElTimeSelect', 'fieldReset', this.initialValue);
       },
+      // 获取这个form-item的rule
       getRules() {
         let formRules = this.form.rules;
         const selfRules = this.rules;
@@ -259,6 +263,7 @@
 
         return [].concat(selfRules || formRules || []).concat(requiredRule);
       },
+      // 过滤匹配不上的trigger
       getFilteredRule(trigger) {
         const rules = this.getRules();
 

@@ -61,6 +61,7 @@
       }
     },
     computed: {
+      // 给label-wrap和form-item组件用的
       autoLabelWidth() {
         if (!this.potentialLabelWidthArr.length) return 0;
         const max = Math.max(...this.potentialLabelWidthArr);
@@ -113,7 +114,7 @@
         }
 
         let promise;
-        // if no callback, return promise
+        // if no callback, return promise。validate除了用callback也可以用Promise。
         if (typeof callback !== 'function' && window.Promise) {
           promise = new window.Promise((resolve, reject) => {
             callback = function(valid) {

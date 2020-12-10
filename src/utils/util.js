@@ -44,8 +44,14 @@ export const getValueByPath = function(object, prop) {
   return result;
 };
 
+/**
+ * 
+ * 深层次匹配props。这个函数和getValueByPath很像，但是这里
+ * 有对符号做处理，把[]转化成.号
+ */
 export function getPropByPath(obj, path, strict) {
   let tempObj = obj;
+  // 匹配[prop]这样的，把 a[bc] 换成 a.bc
   path = path.replace(/\[(\w+)\]/g, '.$1');
   path = path.replace(/^\./, '');
 
